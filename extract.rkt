@@ -1,14 +1,11 @@
 #lang racket/base
 
 (require gregor
-         net/head
          net/http-client
          net/http-easy
          racket/cmdline
-         racket/format
          racket/list
          racket/match
-         racket/port
          threading)
 
 (define email-address (make-parameter ""))
