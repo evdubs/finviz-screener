@@ -1,7 +1,6 @@
 #lang racket/base
 
 (require gregor
-         net/http-client
          net/http-easy
          racket/cmdline
          racket/list
@@ -22,15 +21,15 @@
                       "Password used for FinViz"
                       (password pass)])
 
-(define-values (status headers body)
-  (http-sendrecv "finviz.com"
-                 "/login_submit.ashx"
-                 #:ssl? #t
-                 #:method "POST"
-                 #:headers (list "Content-Type: application/x-www-form-urlencoded")
-                 #:data (string-append "email=" (email-address)
-                                       "&password=" (password)
-                                       "&remember=true")))
+; #:max-redirects is set to 0 here as login_submit.ashx will redirect after
+; success on login, and http-easy will follow the redirect, but the cookie
+; that we're interested in will not be sent during redirect and we will lose it.
+(define headers
+  (response-headers (post "https://finviz.com/login_submit.ashx"
+                          #:max-redirects 0
+                          #:form (list (cons 'email (email-address))
+                                       (cons 'password (password))
+                                       (cons 'remember "true")))))
 
 (define aspx-auth
   (filter-map (λ (h) (match h [(regexp #rx"\\.ASPXAUTH=([0-9A-F]+);" (list str auth))
