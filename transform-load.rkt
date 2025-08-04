@@ -9,7 +9,7 @@
          racket/set
          racket/string)
 
-(define base-folder (make-parameter "/var/tmp/finviz/screener"))
+(define base-folder (make-parameter "/var/local/finviz/screener"))
 
 (define file-date (make-parameter (today)))
 
@@ -23,7 +23,7 @@
  #:program "racket transform-load.rkt"
  #:once-each
  [("-b" "--base-folder") folder
-                         "FinViz screener file base folder. Defaults to /var/tmp/finviz/screener"
+                         "FinViz screener file base folder. Defaults to /var/local/finviz/screener"
                          (base-folder folder)]
  [("-d" "--file-date") date
                        "FinViz screener file date. Defaults to today"

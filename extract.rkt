@@ -37,7 +37,7 @@
                             [_ #f]))
               headers))
 
-(call-with-output-file* (string-append "/var/tmp/finviz/screener/" (date->iso8601 (today)) ".csv")
+(call-with-output-file* (string-append "/var/local/finviz/screener/" (date->iso8601 (today)) ".csv")
   (λ (out) (~> (get "https://finviz.com/export.ashx?v=151"
                     #:headers (hash 'Cookie
                                     (string-append "screenerUrl=screener.ashx%3Fv%3D151; "

@@ -29,7 +29,7 @@ $ racket transform-load.rkt -h
 usage: racket transform-load.rkt [ <option> ... ]
 <option> is one of
   -b <folder>, --base-folder <folder>
-     FinViz screener file base folder. Defaults to /var/tmp/finviz/screener
+     FinViz screener file base folder. Defaults to /var/local/finviz/screener
   -d <date>, --file-date <date>
      FinViz screener file date. Defaults to today
   -n <name>, --db-name <name>
